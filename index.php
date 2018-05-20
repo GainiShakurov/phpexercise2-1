@@ -15,9 +15,9 @@
 </style>
 
 <?php
-$url = 'http://' . $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'] . 'phonebook.json';
-$json = file_get_contents($url);
-$obj = json_decode($json, true);
+$path = __DIR__ . '/phonebook.json';
+$json = file_get_contents($path);
+$phonebook = json_decode($json, true);
 
 echo '<table cellpadding="0" cellspacing="0">';
 echo '<thead>';
@@ -28,11 +28,12 @@ echo '<th>Телефонный номер</th>';
 echo '</thead>';
 echo '<tbody>';
 
-foreach ($obj as $item) {
+foreach ($phonebook as $item) {
     echo '<tr>';
-    foreach ($item as $value) {
-        echo '<td>' . $value . '</td>';
-    }
+        echo '<td>' . $item['firstName'] . '</td>';
+        echo '<td>' . $item['lastName'] . '</td>';
+        echo '<td>' . $item['address'] . '</td>';
+        echo '<td>' . $item['phoneNumber'] . '</td>';
     echo '</tr>';
 }
 
